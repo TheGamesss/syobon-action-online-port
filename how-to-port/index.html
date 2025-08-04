@@ -1,0 +1,106 @@
+<html lang="en-us"><head>
+  <title>Syobon Action | Play NOW at TheGamesss!</title>
+  <link rel="icon" type="image/png" href="https://thegamesss.github.io/syobon-action-online-port/favicon.ico"><style>    div.emscripten { text-align: center; font-size: 12px; color: #000; }
+    @font-face {
+        font-family: sazanami-gothic; src: url(https://thegamesss.github.io/syobon-action-online-port/sazanami-gothic.ttf); }
+    body { background: #a0b4fa; font-family: sazanami-gothic; -webkit-user-select: none; -ms-user-select: none; user-select: none; }
+    h1, h2 { color: #222; text-align: center; } 
+    .container { border: 1px solid #000; width: 640px; margin-left: auto; margin-right: auto; min-height: 20px; margin-top: 10px; color: #000; font-size: 15px; padding: 0px 25px; margin-bottom:5px; } 
+    .container p { text-align: center; }
+    code { color: fff; font-family: sazanami-gothic; -webkit-user-select: text; -ms-user-select: text; user-select: text; } 
+    pre { background-color: #333; border: 1px solid #000; padding: 10px; }
+    .codebg { background: #333; padding: 0px 3px; border: 1px solid #000; }
+    </style>
+<style type="text/css"></style><style type="text/css" id="tts-styles">[data-tts-block-id].tts-active {background: rgba(206, 225, 255, 0.9) !important;} [data-tts-sentence-id].tts-active {background: rgba(0, 89, 191, 0.7) !important;}</style></head>
+<body>
+  <h1><div style="background-image:url('https://thegamesss.github.io/syobon-action-online-port/syobon-banner.png');width:720px;height:109px;margin-left:auto;margin-right:auto;" title="Syobon Action"></div></h1>
+    
+<div class="emscripten">
+  | [<a href="https://thegamesss.github.io/syobon-action-online-port/" target="_self">Home</a>] [<a href="https://thegamesss.github.io/syobon-action-online-port/how-to-port/" target="_self">How To Port</a>] [<a href="https://thegamesss.github.io/syobon-action-online-port/help/" target="_self">Help/Support</a>] |
+</div>
+    
+<div class="container">
+  
+  <h1 style="margin:30px;font-size:25px;">How to Port Syobon Action RC3 to the Web</h1>
+  <p>This tutorial shows how to compile <strong>OpenSyobonAction</strong> (C++ SDL2 game) into WebAssembly using Emscripten on Windows.</p>
+
+  <h2>Step 1: Install Requirements</h2>
+  <ul>
+    <li><a href="https://git-scm.com/download/win">Git for Windows</a></li>
+    <li><a href="https://www.python.org/downloads/windows/">Python 3</a> (check "Add to PATH")</li>
+    <li><a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Visual Studio Build Tools</a> with C++ and Windows SDKs</li>
+  </ul>
+
+  <h2>Step 2: Install Emscripten</h2>
+  <pre><code>git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+emsdk install latest
+emsdk activate latest
+emsdk_env.bat</code></pre>
+
+  <h2>Step 3: Clone the Game Source</h2>
+  <pre><code>cd %USERPROFILE%
+git clone https://github.com/akemin-dayo/OpenSyobonAction.git
+cd OpenSyobonAction</code></pre>
+
+  <h2>Step 4: Organize Game Files</h2>
+  <p>Create a folder called <code class="codebg">data</code> and move all .dat, .ogg, .png files into it.</p>
+
+  <h2>Step 5: Build with Emscripten</h2>
+  <pre><code>emcc src/main.cpp src/*.cpp -o index.html ^
+-s USE_SDL=2 ^
+-s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["bmp", "png"]' ^
+-s USE_SDL_MIXER=2 -s SDL2_MIXER_FORMATS='["ogg"]' ^
+-s ALLOW_MEMORY_GROWTH=1 -s WASM=1 ^
+--preload-file data ^
+-I./src</code></pre>
+
+  <h2>Step 6: Run the Game Locally</h2>
+  <pre><code>emrun --no_browser --port 8080 .</code></pre>
+  <p>Open your browser and go to <code class="codebg">http://localhost:8080</code></p>
+
+  <h2>Step 7: Optional Hosting</h2>
+  <p>Upload <code class="codebg">index.html</code>, <code class="codebg">index.js</code>, <code class="codebg">index.wasm</code>, and the <code class="codebg">data</code> folder to:</p>
+  <ul>
+    <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+    <li><a href="https://www.netlify.com/">Netlify</a></li>
+    <li><a href="https://itch.io/">Itch.io</a></li>
+  </ul>
+
+  <h2>Troubleshooting</h2>
+  <ul>
+    <li>Use <code class="codebg">-s ASSERTIONS=1</code> for debug builds</li>
+    <li>Use browser dev tools (F12) to check console logs</li>
+    <li>Ensure correct file paths and preloaded resources</li>
+  </ul>
+
+  <h2>Example Folder Structure</h2>
+  <pre><code>OpenSyobonAction/
+├── src/
+├── data/
+│   ├── stage1.dat
+│   ├── bgm.ogg
+│   ├── player.png
+├── index.html
+├── index.js
+├── index.wasm</code></pre>
+
+  <h2>Optional: Create a Build Script</h2>
+  <pre><code>@echo off
+call ..\emsdk\emsdk_env.bat
+emcc src/main.cpp src/*.cpp -o index.html ^
+-s USE_SDL=2 ^
+-s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["bmp", "png"]' ^
+-s USE_SDL_MIXER=2 -s SDL2_MIXER_FORMATS='["ogg"]' ^
+-s ALLOW_MEMORY_GROWTH=1 -s WASM=1 ^
+--preload-file data ^
+-I./src</code></pre>
+
+  <p>Save this as <code class="codebg">build.bat</code> and double-click it when needed.</p>
+</div>
+    
+<div class="emscripten" style="margin-bottom:30px;">
+  <a href="https://github.com/TheGamesss/syobon-action-online-port">File Source</a>. Posted by <a href="https://github.com/TheGamesss">@TheGamesss</a> using <a href="https://github.com">Github</a>.
+</div>
+    
+</body></html>
