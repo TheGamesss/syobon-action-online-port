@@ -1,19 +1,3 @@
-<html lang="en-us"><head>
-  <link rel="icon" type="image/png" href="https://www.neko-network.wuaze.com/favicon.ico"><style>    div.emscripten { text-align: center; font-size: 12px; color: #000; }
-    @font-face {
-        font-family: sazanami-gothic; src: url(https://www.neko-network.wuaze.com/sazanami-gothic.ttf); }
-    body { margin: 0; font-family: sazanami-gothic; -webkit-user-select: none; -ms-user-select: none; user-select: none; }
-    h1, h2 { color: #222; text-align: center; } 
-    .container { border: 1px solid #000; width: 640px; margin-left: auto; margin-right: auto; min-height: 20px; margin-top: 10px; color: #000; font-size: 15px; padding: 0px 25px; margin-bottom:5px; } 
-    .container p { text-align: center; }
-    code { color: fff; font-family: sazanami-gothic; -webkit-user-select: text; -ms-user-select: text; user-select: text; } 
-    pre { background-color: #333; border: 1px solid #000; padding: 10px; }
-    .codebg { background: #333; padding: 0px 3px; border: 1px solid #000; }
-    #canvas { border: 1px solid #000; margin-bottom: 25px; }
-    </style>
-<style type="text/css"></style><style type="text/css" id="tts-styles">[data-tts-block-id].tts-active {background: rgba(206, 225, 255, 0.9) !important;} [data-tts-sentence-id].tts-active {background: rgba(0, 89, 191, 0.7) !important;}</style></head>
-<body>
   <div class="emscripten">
 | [<a href="https://www.neko-network.wuaze.com/" target="_self">Home</a>] [<a href="https://www.neko-network.wuaze.com/how-to-port/" target="_self">How To Port</a>] [<a href="https://www.neko-network.wuaze.com/help/" target="_self">Help/Support</a>] |
   </div>
-</body>
