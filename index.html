@@ -16,9 +16,15 @@
 <body>
   <h1><div style="background-image:url('https://www.neko-network.wuaze.com/syobon-banner.png');width:720px;height:109px;margin-left:auto;margin-right:auto;" title="Syobon Action"></div></h1>
     
-<div class="emscripten">
-<iframe src="https://www.neko-network.wuaze.com/toolbar.html" style="border:0px;width:692px;height:15px"></iframe>
-</div>
+<div class="emscripten" id="toolbar"></div>
+
+<script>
+fetch("https://www.neko-network.wuaze.com/toolbar.file")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("toolbar").innerHTML = data;
+  });
+</script>
     
 <div class="container">
   
